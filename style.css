@@ -1,0 +1,38 @@
+.rmc-clock-700{
+  width:700px;
+  height:150px;
+  background:rgba(0,0,0,0.65);
+  color:#ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 40px;
+  box-sizing:border-box;
+  border-radius:20px;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  backdrop-filter: blur(8px);
+}
+
+/* LEVO – SAT */
+#clockTime700{
+  font-size:80px;
+  font-weight:800;
+  letter-spacing:2px;
+  line-height:1;
+}
+
+/* DESNO – DATUM + LOKACIJA */
+.clock-right{
+  text-align:right;
+}
+
+#clockDate700{
+  font-size:22px;
+  font-weight:500;
+  margin-bottom:6px;
+}
+
+.clockLoc700{
+  font-size:18px;
+  opacity:0.8;
+}
