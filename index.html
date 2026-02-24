@@ -72,13 +72,15 @@
   <script>
     (function(){
       const TZ = "Europe/Belgrade";
+      const LOCALE = "sr-Latn-RS"; // ✅ latinica
+
       const timeEl = document.getElementById("clockTime700");
       const dateEl = document.getElementById("clockDate700");
 
       function updateClock(){
         const now = new Date();
 
-        const time = new Intl.DateTimeFormat("sr-RS", {
+        const time = new Intl.DateTimeFormat(LOCALE, {
           timeZone: TZ,
           hour: "2-digit",
           minute: "2-digit",
@@ -86,7 +88,7 @@
           hour12: false
         }).format(now);
 
-        const date = new Intl.DateTimeFormat("sr-RS", {
+        const date = new Intl.DateTimeFormat(LOCALE, {
           timeZone: TZ,
           weekday: "short",
           day: "2-digit",
