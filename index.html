@@ -1,51 +1,113 @@
-<style>
-  html, body {
-    height:100%;
-    margin:0;
-    background:transparent; /* 🔥 ključno */
-  }
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RMC Clock — Zlatibor</title>
 
-  body{
-    display:flex;
-    align-items:flex-start;
-    justify-content:flex-start;
-    padding:20px;
-    box-sizing:border-box;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  }
+  <style>
+    html, body{
+      height:100%;
+      margin:0;
+      background:transparent; /* ✅ pozadina stranice transparent */
+    }
 
-  .rmc-clock-700{
-    width:700px;
-    height:150px;
-    background:transparent; /* 🔥 nema kartice */
-    color:#ffffff;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 40px;
-    box-sizing:border-box;
-  }
+    body{
+      padding:20px;
+      box-sizing:border-box;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
 
-  #clockTime700{
-    font-size:80px;
-    font-weight:800;
-    letter-spacing:2px;
-    line-height:1;
-    white-space:nowrap;
-  }
+    /* ✅ TAB (braon) ostaje vidljiv */
+    .rmc-clock-700{
+      width:700px;
+      height:150px;
+      background: rgba(90, 70, 50, 0.88);
+      color:#fff;
 
-  .clock-right{ text-align:right; }
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
 
-  #clockDate700{
-    font-size:22px;
-    font-weight:500;
-    margin-bottom:6px;
-    white-space:nowrap;
-  }
+      padding:0 40px;
+      box-sizing:border-box;
+      border-radius:20px;
 
-  .clockLoc700{
-    font-size:18px;
-    opacity:0.9;
-    white-space:nowrap;
-  }
-</style>
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    #clockTime700{
+      font-size:80px;
+      font-weight:800;
+      letter-spacing:2px;
+      line-height:1;
+      white-space:nowrap;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.45);
+    }
+
+    .clock-right{ text-align:right; }
+
+    #clockDate700{
+      font-size:22px;
+      font-weight:600;
+      margin-bottom:6px;
+      white-space:nowrap;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+    }
+
+    .clockLoc700{
+      font-size:18px;
+      opacity:0.9;
+      white-space:nowrap;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="rmc-clock-700">
+    <div class="clock-left">
+      <div id="clockTime700">--:--:--</div>
+    </div>
+    <div class="clock-right">
+      <div id="clockDate700">--</div>
+      <div class="clockLoc700">Zlatibor</div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const TZ = "Europe/Belgrade";
+      const LOCALE = "sr-Latn-RS"; // ✅ latinica
+
+      const timeEl = document.getElementById("clockTime700");
+      const dateEl = document.getElementById("clockDate700");
+
+      function updateClock(){
+        const now = new Date();
+
+        timeEl.textContent = new Intl.DateTimeFormat(LOCALE, {
+          timeZone: TZ,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false
+        }).format(now);
+
+        dateEl.textContent = new Intl.DateTimeFormat(LOCALE, {
+          timeZone: TZ,
+          weekday: "short",
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
+        }).format(now);
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+    })();
+  </script>
+
+</body>
+</html>
